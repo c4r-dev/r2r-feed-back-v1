@@ -58,12 +58,12 @@ export default function FeedBack() {
           Feedback
         </div>
         <div>
-          Your feedback helps us to iprove this and other units. Please use the
+          Your feedback helps us to improve this and other units. Please use the
         </div>
         <div>
           tool below to share your thoughts.
         </div>
-        <div>
+        <div class="flex-container">
           <Image
             priority
             src={Raven1}
@@ -80,8 +80,8 @@ export default function FeedBack() {
             alt="Follow us at c4r.io"
           />
         </div>
-      </div>
 
+      </div>
       <input
         onChange={(e) => setAnswerq1(e.target.value)}
         value={answerQ1}
@@ -95,6 +95,13 @@ export default function FeedBack() {
       >
         submit
       </button>
+      <div>
+        Tool Repository
+      </div>
+      <div>
+        We've collected a list of all sorts of rigor & reproducitibilty related tools
+      </div>
+
     </form>
   );
 }
