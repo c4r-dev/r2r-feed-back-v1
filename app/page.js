@@ -16,10 +16,10 @@ export default function FeedBack() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!answerQ1) {
-      alert("Answer is required.");
-      return;
-    }
+    // if (!answerQ1) {
+    //   alert("Answer is required.");
+    //   return;
+    // }
 
     try {
       const res = await fetch("/api/studentInput", {
@@ -55,6 +55,15 @@ export default function FeedBack() {
           />
         </div>
         <div>
+          Feedback
+        </div>
+        <div>
+          Your feedback helps us to iprove this and other units. Please use the
+        </div>
+        <div>
+          tool below to share your thoughts.
+        </div>
+        <div>
           <Image
             priority
             src={Raven1}
@@ -84,7 +93,7 @@ export default function FeedBack() {
         type="submit"
         className="bg-green-600 font-bold text-white py-3 px-6 w-fit"
       >
-        Save Answer
+        submit
       </button>
     </form>
   );
