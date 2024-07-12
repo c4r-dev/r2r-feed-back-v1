@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 import Image from 'next/image';
 import PartyRavens from "@/assets/party-ravens.svg";
@@ -11,10 +12,14 @@ import Raven3 from "@/assets/feedback-button-text-3.svg";
 
 export default function FeedBack() {
 
+  const router = useRouter()
+
   const [answerQ1, setAnswerq1] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // setFbtool(fbtoolanswer)
 
     // if (!answerQ1) {
     //   alert("Answer is required.");
@@ -65,35 +70,72 @@ export default function FeedBack() {
         <div>
           tool below to share your thoughts.
         </div>
-        <div class="flex-container">
+      </div>
+
+
+      <div className="flex-container">
+
+        <input
+          type="radio"
+          name="fbtoolanswer"
+          id="fbtoolns"
+          defaultValue={"not sure"}
+        />
+        <label htmlFor="fbtoolns">
           <Image
             priority
             src={Raven1}
             alt="Follow us at c4r.io"
           />
+        </label>
+
+        <input
+          type="radio"
+          name="fbtoolanswer"
+          id="fbtoolgd"
+          defaultValue={"good"}
+        />
+        <label htmlFor="fbtoolgd">
           <Image
             priority
             src={Raven2}
             alt="Follow us at c4r.io"
           />
+        </label>
+
+        <input
+          type="radio"
+          name="fbtoolanswer"
+          id="fbtoolgr"
+          defaultValue={"great"}
+        />
+        <label htmlFor="fbtoolgr">
           <Image
             priority
             src={Raven3}
             alt="Follow us at c4r.io"
           />
-        </div>
+        </label>
+
       </div>
-      <input
-        onChange={(e) => setAnswerq1(e.target.value)}
-        value={answerQ1}
-        className="border border-slate-500 px-8 py-2"
-        type="text"
-        placeholder="Your answer."
-      />
-      <button type="submit">
-        submit
-      </button>
+
       <div><br></br></div>
+
+      <div className="flex-container2">
+        <input
+          onChange={(e) => setAnswerq1(e.target.value)}
+          value={answerQ1}
+          className="border border-slate-500 px-8 py-2"
+          type="text"
+          placeholder="Your answer."
+        />
+        <button type="submit">
+          submit
+        </button>
+      </div>
+
+      <div><br></br></div>
+
       <div>
         Tool Repository
       </div>

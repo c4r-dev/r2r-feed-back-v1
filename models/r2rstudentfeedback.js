@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const r2rstudentfeedbackSchema = new Schema(
   {
     answerQ1: String,
+    fbtool: String,
   },
 
   {
