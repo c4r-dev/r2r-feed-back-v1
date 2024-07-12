@@ -1,7 +1,7 @@
-'use client'
+'use client'  
 
 import { useState } from "react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 import Image from 'next/image';
 import PartyRavens from "@/assets/party-ravens.svg";
@@ -36,7 +36,7 @@ export default function FeedBack() {
       });
 
       if (res.ok) {
-        router.push("/closeWindow");
+        // router.push("/closeWindow");
       } else {
         throw new Error("Failed to create an answer.");
       }
