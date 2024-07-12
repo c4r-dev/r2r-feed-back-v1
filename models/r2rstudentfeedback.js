@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const studentinputSchema = new Schema(
+const r2rstudentfeedbackSchema = new Schema(
   {
     answerQ1: String,
   },
@@ -10,6 +10,6 @@ const studentinputSchema = new Schema(
   }
 );
 
-const StudentInput = mongoose.models.StudentInput || mongoose.model("StudentInput", studentinputSchema);
+const R2RStudentFeedback = mongoose.models.R2RStudentFeedback || mongoose.model("R2RStudentFeedback", r2rstudentfeedbackSchema);
 
-export default StudentInput;
+export default R2RStudentFeedback;
