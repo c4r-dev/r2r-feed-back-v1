@@ -43,7 +43,9 @@ export default function FeedBack() {
   return (
 
     <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-
+      <div>
+        <h1>Suplementary Materials</h1>
+      </div>
       <div>
         <h1>Great job!</h1>
         <h1>You've finished the Unit</h1>
@@ -80,7 +82,6 @@ export default function FeedBack() {
             alt="Follow us at c4r.io"
           />
         </div>
-
       </div>
       <input
         onChange={(e) => setAnswerq1(e.target.value)}
@@ -89,19 +90,46 @@ export default function FeedBack() {
         type="text"
         placeholder="Your answer."
       />
-      <button
-        type="submit"
-        className="bg-green-600 font-bold text-white py-3 px-6 w-fit"
-      >
+      <button type="submit">
         submit
       </button>
+      <div><br></br></div>
       <div>
         Tool Repository
       </div>
       <div>
-        We've collected a list of all sorts of rigor & reproducitibilty related tools
+        <p>
+          We've collected a list of all sorts of rigor & reproducitibilty related tools
+          along with links to relevant landing pages, notes as to whether a given
+          tool is free and open source, and the specific part of the research
+          process for which they might prove most useful. We even provide you
+          with quick 10 minutes exercises designed to give you an idea of how you
+          make appropriate use of each tool! Check them out and spread the word,
+          or submit tools we missed!
+        </p>
       </div>
-
+      <div>
+        Community Index
+      </div>
+      <div>
+        <p>
+          This is an index of various communities that serve to highlight tools,
+          disseminate news, facilitate connection and guidance, and nurture the
+          next generation of rigor champions - so be sure to join the discussion and
+          do your part for rigor!
+        </p>
+      </div>
+      <div>
+        Champions Directory
+      </div>
+      <div>
+        <p>
+          In order to ensure that the rigor community remains connected, self
+          identifying rigor champions are welcome to register with us to be listed in
+          this directory and indicate their career stage, area of expertise, and openness
+          to contract.
+        </p>
+      </div>
     </form>
   );
 }
