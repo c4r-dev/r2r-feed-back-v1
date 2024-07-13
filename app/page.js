@@ -150,7 +150,7 @@ export default function FeedBack() {
       </div>
       <div>
         <p>
-          We've collected a list of all sorts of rigor and reproducitibilty related tools
+          We have collected a list of all sorts of rigor and reproducitibilty related tools
           along with links to relevant landing pages, notes as to whether a given
           tool is free and open source, and the specific part of the research
           process for which they might prove most useful. We even provide you
