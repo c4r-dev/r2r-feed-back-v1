@@ -1,6 +1,6 @@
 'use client'  
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import Image from 'next/image';
@@ -15,16 +15,19 @@ export default function FeedBack() {
   const router = useRouter()
 
   const [answerQ1, setAnswerq1] = useState("");
+  const [fbtool, setFBTool] = useState('No Selection')
+
+  const onValueChange = (event) => {
+    setFBTool(event.target.value)
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // setFbtool(fbtoolanswer)
-
-    // if (!answerQ1) {
-    //   alert("Answer is required.");
-    //   return;
-    // }
+    if (!answerQ1 && !fbtool)  {
+      alert("Selection or Answer is required to Submit.");
+      return;
+    }
 
     try {
       const res = await fetch("/api/studentInput", {
@@ -32,7 +35,7 @@ export default function FeedBack() {
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify({ answerQ1 }),
+        body: JSON.stringify({ answerQ1, fbtool }),
       });
 
       if (res.ok) {
@@ -79,7 +82,9 @@ export default function FeedBack() {
           type="radio"
           name="fbtoolanswer"
           id="fbtoolns"
-          defaultValue={"not sure"}
+          value={"Not Sure"}
+          checked={fbtool === 'Not Sure'} 
+          onChange={onValueChange}
         />
         <label htmlFor="fbtoolns">
           <Image
@@ -93,7 +98,9 @@ export default function FeedBack() {
           type="radio"
           name="fbtoolanswer"
           id="fbtoolgd"
-          defaultValue={"good"}
+          value={"Good"}
+          checked={fbtool === 'Good'} 
+          onChange={onValueChange}
         />
         <label htmlFor="fbtoolgd">
           <Image
@@ -107,7 +114,9 @@ export default function FeedBack() {
           type="radio"
           name="fbtoolanswer"
           id="fbtoolgr"
-          defaultValue={"great"}
+          value={"Great"}
+          checked={fbtool === 'Great'} 
+          onChange={onValueChange}
         />
         <label htmlFor="fbtoolgr">
           <Image
