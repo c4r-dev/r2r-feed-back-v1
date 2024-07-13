@@ -56,7 +56,7 @@ export default function FeedBack() {
       </div>
       <div>
         <h1>Great job!</h1>
-        <h1>You've finished the Unit</h1>
+        <h1>You have finished the Unit.</h1>
         <div>
           <Image
             priority
