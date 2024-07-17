@@ -146,7 +146,7 @@ export default function FeedBack() {
       <div><br></br></div>
 
       <div>
-        Tool Repository
+        <h2>Tool Repository</h2>
       </div>
       <div>
         <p>
@@ -160,7 +160,7 @@ export default function FeedBack() {
         </p>
       </div>
       <div>
-        Community Index
+        <h2>Community Index</h2>
       </div>
       <div>
         <p>
@@ -171,7 +171,7 @@ export default function FeedBack() {
         </p>
       </div>
       <div>
-        Champions Directory
+        <h2>Champions Directory</h2>
       </div>
       <div>
         <p>
