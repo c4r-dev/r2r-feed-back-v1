@@ -40,10 +40,14 @@ export default function FeedBack() {
             });
 
             if (res.ok) {
-                // router.push("/closeWindow");
+                // Clear the input fields
+                setAnswerq1("");
+                setFBTool("");
                 console.log("Answer submitted successfully");
+                // router.push("/closeWindow");  
             } else {
                 console.log("Failed to create an answer.");
+                alert("There was an error submitting your feedback. Please try again.");
                 throw new Error("Failed to create an answer.");
             }
         } catch (error) {
@@ -82,9 +86,9 @@ export default function FeedBack() {
                             <p className={myFont.className} >Your feedback helps us to improve this and other
                             units. Please use the tool below to share your
                             thoughts.</p>
-                        <div className="flex-container">
-                        <p className={myFont.className }>How was your experience?</p>
-                        <div >
+                        <div className="flex-container widget-container">
+                            <p className={myFont.className + " widget-header"}>How was your experience?</p>
+                        <div className="widget-input">
                         <input
                                 type="radio"
                                 name="fbtoolanswer"
@@ -140,13 +144,14 @@ export default function FeedBack() {
                            <p className={myFont.className}>Tell us how this Unit could improve:</p>
                         </div>
                         <div className="flex-container2">
-                            <input
+                            <textarea
                                 onChange={(e) => setAnswerq1(e.target.value)}
                                 value={answerQ1}
-                                className="border border-slate-500 px-8 py-2"
                                 type="text"
                                 placeholder="My experience was..."
+                                className="widget-text-input"
                             />
+                            <br></br>
                             <button type="submit">submit</button>
                         </div>
                     </div>
