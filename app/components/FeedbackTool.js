@@ -20,6 +20,8 @@ export default function FeedbackTool() {
     const [answerQ1, setAnswerq1] = useState("");
     const [fbtool, setFBTool] = useState("No Selection");
 
+    const [hasSubmitted, setHasSubmitted] = useState(false);
+
     const onValueChange = (event) => {
         setFBTool(event.target.value);
     };
@@ -46,6 +48,7 @@ export default function FeedbackTool() {
                 setAnswerq1("");
                 setFBTool("");
                 console.log("Answer submitted successfully");
+                setHasSubmitted(true);
                 // router.push("/closeWindow");
             } else {
                 console.log("Failed to create an answer.");
@@ -58,6 +61,19 @@ export default function FeedbackTool() {
             console.log(error);
         }
     };
+
+    if (hasSubmitted) {
+        return (
+            <div>
+                <div className="feedback-container">
+                    <h1 className={myFont.className + " feedback-response"}>
+                        Thank you for your feedback!
+                    </h1>
+                    {/* <button onClick={() => router.push("/")}>Leave feedback</button> */}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div>

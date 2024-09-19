@@ -96,3 +96,26 @@
     margin-right: 5px;
     font-size: 1.2rem;
   }
+
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    max-width: 800px;
+    box-shadow: 4px 4px 10px 0px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    margin-top: 40px;
+  }
+
+  .feedback-response{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-wrap: balance;
+    text-align: center;
+  }
