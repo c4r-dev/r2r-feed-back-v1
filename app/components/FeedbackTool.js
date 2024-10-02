@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
+import React, { useState, useEffect, Suspense } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 import PartyRavens from "@/assets/party-ravens.svg";
@@ -16,11 +16,19 @@ const myFont = localFont({ src: "../GeneralSans-Semibold.ttf" });
 
 export default function FeedbackTool() {
     const router = useRouter();
+  
 
     const [answerQ1, setAnswerq1] = useState("");
     const [fbtool, setFBTool] = useState("No Selection");
-
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    const [activityName, setActivityName] = useState("");
+
+    function Search() {
+        const searchParams = useSearchParams()
+        setActivityName(searchParams.get('source'))
+        return
+      }
+
 
     const onValueChange = (event) => {
         setFBTool(event.target.value);
@@ -40,7 +48,7 @@ export default function FeedbackTool() {
                 headers: {
                     "Content-type": "application/json",
                 },
-                body: JSON.stringify({ answerQ1, fbtool }),
+                body: JSON.stringify({ answerQ1, fbtool, activityName}),
             });
 
             if (res.ok) {
@@ -77,6 +85,9 @@ export default function FeedbackTool() {
 
     return (
         <div>
+            <Suspense>
+            <Search/>
+            </Suspense>
             <form
                 onSubmit={handleSubmit}
                 className="form-outer-container"
