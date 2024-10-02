@@ -5,6 +5,7 @@ export async function submitFeedback(answerQ1, fbtool) {
             id: Math.floor(Math.random() * 1000000),
             answerQ1: answerQ1,
             fbtool: fbtool,
+            activityName: activityName,
             time: new Date().toISOString(),
         },
     };
