@@ -8,3 +8,9 @@ export async function POST(request) {
   await StudentInput.create({ answerQ1, fbtool, activityName });
   return NextResponse.json({ message: "Feedback Submitted" }, { status: 201 });
 }
+
+export async function GET() {
+  await connectMongoDB();
+  const studentInputs = await StudentInput.find();
+  return NextResponse.json({ studentInputs });
+}
