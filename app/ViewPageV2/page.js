@@ -30,10 +30,49 @@ function ViewPage() {
     }
   };
 
+  const exportToCSV = () => {
+    // Convert data to CSV format
+    const headers = ['Activity Name', 'Feedback', 'Comment', 'Date'];
+    const csvRows = [headers];
+
+    studentInputs.forEach(input => {
+      csvRows.push([
+        input.activityName,
+        input.answerQ1,
+        input.fbtool,
+        new Date(input.createdAt).toLocaleString()
+      ].map(field => 
+        // Escape fields that contain commas or quotes
+        typeof field === 'string' ? 
+          `"${field.replace(/"/g, '""')}"` : 
+          field
+      ));
+    });
+
+    const csvContent = csvRows.map(row => row.join(',')).join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    
+    link.setAttribute('href', url);
+    link.setAttribute('download', `feedback-export${source ? `-${source}` : ''}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <div>
       <div className="mb-6 p-4 bg-gray-100 rounded">
-        <h2 className="text-lg font-semibold mb-2">Current Filter:</h2>
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold">Current Filter:</h2>
+          <button
+            onClick={exportToCSV}
+            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
+          >
+            Export to CSV
+          </button>
+        </div>
         <p>{source ? `Showing results for: ${source}` : 'No filter applied - showing all results'}</p>
         
         <form onSubmit={handleFilterApply} className="mt-4 flex gap-2">
