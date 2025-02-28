@@ -9,8 +9,14 @@ export async function POST(request) {
   return NextResponse.json({ message: "Feedback Submitted" }, { status: 201 });
 }
 
-export async function GET() {
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const source = searchParams.get('source');
+  
   await connectMongoDB();
-  const studentInputs = await StudentInput.find();
+  
+  const query = source ? { activityName: source } : {};
+  const studentInputs = await StudentInput.find(query);
+  
   return NextResponse.json({ studentInputs });
 }
