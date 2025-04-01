@@ -12,6 +12,7 @@ function ViewPage() {
   const [endDate, setEndDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [searchType, setSearchType] = useState("exact");
   const [sortConfig, setSortConfig] = useState({ key: 'createdAt', direction: 'desc' });
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(25);
@@ -57,7 +58,29 @@ function ViewPage() {
     }));
   };
 
-  const sortedData = [...studentInputs].sort((a, b) => {
+  const filterData = (data) => {
+    if (!filterInput.trim()) return data;
+
+    return data.filter(item => {
+      const activityName = item.activityName || '';
+      const searchTerm = filterInput.trim();
+
+      switch (searchType) {
+        case 'exact':
+          return activityName.toLowerCase() === searchTerm.toLowerCase();
+        case 'begins':
+          return activityName.toLowerCase().startsWith(searchTerm.toLowerCase());
+        case 'ends':
+          return activityName.toLowerCase().endsWith(searchTerm.toLowerCase());
+        case 'contains':
+          return activityName.toLowerCase().includes(searchTerm.toLowerCase());
+        default:
+          return true;
+      }
+    });
+  };
+
+  const sortedData = filterData([...studentInputs]).sort((a, b) => {
     if (sortConfig.key === 'createdAt') {
       return sortConfig.direction === 'asc' 
         ? new Date(a.createdAt) - new Date(b.createdAt)
@@ -138,6 +161,7 @@ function ViewPage() {
     
     if (filterInput.trim()) {
       params.append('source', filterInput.trim());
+      params.append('searchType', searchType);
     }
     if (startDate) {
       params.append('fromDate', startDate);
@@ -152,7 +176,7 @@ function ViewPage() {
       params.append('toTime', endTime);
     }
 
-    setCurrentPage(1); // Reset to first page when applying filters
+    setCurrentPage(1);
     const queryString = params.toString();
     router.push(`/ViewPageV2${queryString ? `?${queryString}` : ''}`);
   };
@@ -163,7 +187,8 @@ function ViewPage() {
     setEndDate("");
     setStartTime("");
     setEndTime("");
-    setCurrentPage(1); // Reset to first page when clearing filters
+    setSearchType("exact");
+    setCurrentPage(1);
     router.push('/ViewPageV2');
   };
 
@@ -221,16 +246,31 @@ function ViewPage() {
         
         <form onSubmit={handleFilterApply} className="filters-form">
           <div className="source-filter">
-            <input
-              type="text"
-              value={filterInput}
-              onChange={(e) => setFilterInput(e.target.value)}
-              placeholder="Enter source filter..."
-              className="input-field"
-            />
-            <button type="submit" className="btn btn-primary">
-              Apply Filter
-            </button>
+            <div className="search-group">
+              <label className="search-label">Activity Name Search</label>
+              <div className="search-row">
+                <select
+                  className="search-type-select"
+                  value={searchType}
+                  onChange={(e) => setSearchType(e.target.value)}
+                >
+                  <option value="exact">Matches exactly</option>
+                  <option value="begins">Begins with</option>
+                  <option value="ends">Ends with</option>
+                  <option value="contains">Contains</option>
+                </select>
+                <input
+                  type="text"
+                  value={filterInput}
+                  onChange={(e) => setFilterInput(e.target.value)}
+                  placeholder="Enter activity name..."
+                  className="input-field"
+                />
+                <button type="submit" className="btn btn-primary">
+                  Apply Filter
+                </button>
+              </div>
+            </div>
           </div>
           
           <div className="date-time-grid">
