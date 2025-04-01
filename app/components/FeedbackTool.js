@@ -5,9 +5,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 import Image from "next/image";
 import PartyRavens from "@/assets/party-ravens.svg";
-import Raven1 from "@/assets/feedback-button-text-1.svg";
-import Raven2 from "@/assets/feedback-button-text-2.svg";
-import Raven3 from "@/assets/feedback-button-text-3.svg";
+import RavenNotSure from "@/assets/raven-not-sure.svg";
+import RavenGood from "@/assets/raven-good.svg";
+import RavenGreat from "@/assets/raven-great.svg";
 
 import "./feedbackTool.css";
 
@@ -114,7 +114,7 @@ export default function FeedbackTool() {
                                 <label htmlFor="fbtoolns">
                                     <Image
                                         priority
-                                        src={Raven1}
+                                        src={RavenNotSure}
                                         alt="Follow us at c4r.io"
                                         layout="responsive"
                                     />
@@ -131,7 +131,7 @@ export default function FeedbackTool() {
                                 <label htmlFor="fbtoolgd">
                                     <Image
                                         priority
-                                        src={Raven2}
+                                        src={RavenGood}
                                         alt="Follow us at c4r.io"
                                         layout="responsive"
                                     />
@@ -148,7 +148,7 @@ export default function FeedbackTool() {
                                 <label htmlFor="fbtoolgr">
                                     <Image
                                         priority
-                                        src={Raven3}
+                                        src={RavenGreat}
                                         alt="Follow us at c4r.io"
                                         layout="responsive"
                                     />

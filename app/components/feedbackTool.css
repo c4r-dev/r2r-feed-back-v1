@@ -75,6 +75,10 @@
   margin-bottom: 10px;
 }
 
+.widget-input img {
+  border-radius: 8px;
+}
+
 .widget-text-input {
   height: 200px;
   background-color: #e5e3e3;
